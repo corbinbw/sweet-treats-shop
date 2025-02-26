@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Treats - Premium Suckers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            margin-left: 2.5rem;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1481391319762-47dff72954d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Products Grid */
+        .products {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .buy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Cart Styling */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            margin-left: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cart-sidebar {
+            background-color: var(--card-bg);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        .cart-header {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .cart-item {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+            padding: 5rem 2rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #about h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-text h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Contact Form */
+        #contact {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+        }
+
+        #contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            border: 2px solid #eee;
+            transition: border-color 0.3s ease;
+            font-size: 1rem;
+            padding: 0.8rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">Sweet Treats</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒 <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <span class="close-cart" onclick="toggleCart()">×</span>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total">
+            <h3>Total: $<span id="cart-total">0.00</span></h3>
+            <div class="checkout-form">
+                <button class="checkout-btn" onclick="checkout()">Checkout Now</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>Premium Handcrafted Suckers</h1>
+        <p>Experience the perfect blend of flavor and artistry in every handmade treat</p>
+    </section>
+
+    <section id="products" class="products active">
+        <h2>Featured Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1575224526797-5730d09d781d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Classic Cherry Sucker" class="product-image">
+                <h3>Classic Cherry</h3>
+                <p>Rich, sweet cherry flavor with a perfect balance of tartness</p>
+                <div class="price">$1.99</div>
+                <button class="buy-btn" onclick="addToCart('Classic Cherry', 1.99)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Blue Raspberry Blast" class="product-image">
+                <h3>Blue Raspberry Blast</h3>
+                <p>Intense blue raspberry flavor that will tantalize your taste buds</p>
+                <div class="price">$1.99</div>
+                <button class="buy-btn" onclick="addToCart('Blue Raspberry Blast', 1.99)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Watermelon Wonder" class="product-image">
+                <h3>Watermelon Wonder</h3>
+                <p>Fresh, juicy watermelon flavor that tastes like summer</p>
+                <div class="price">$1.99</div>
+                <button class="buy-btn" onclick="addToCart('Watermelon Wonder', 1.99)">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1558234469-50fc184d1cc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Grape Goodness" class="product-image">
+                <h3>Grape Goodness</h3>
+                <p>Sweet and sophisticated grape flavor that's always a crowd favorite</p>
+                <div class="price">$1.99</div>
+                <button class="buy-btn" onclick="addToCart('Grape Goodness', 1.99)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>Our Story</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Crafted with Passion</h3>
+                <p>At Sweet Treats, we believe that every sucker should be a work of art. Our handcrafted treats are made with premium ingredients and careful attention to detail, ensuring each one is perfect.</p>
+                
+                <h3>Quality Ingredients</h3>
+                <p>We use only the finest natural flavors and colors in our suckers. Each batch is carefully crafted to ensure consistent quality and amazing taste that keeps our customers coming back for more.</p>
+                
+                <h3>Our Guarantee</h3>
+                <p>Your satisfaction is our top priority. If you're not completely happy with your purchase, we'll make it right - that's our promise to you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button class="buy-btn" onclick="submitContact()">Send Message</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sweet Treats | Premium Handcrafted Suckers</p>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+
+        function toggleCart() {
+            document.querySelector('.cart-sidebar').classList.toggle('open');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            cartTotal += price;
+            updateCart();
+            // Show confirmation
+            alert(`${name} added to cart!`);
+        }
+
+        function updateCart() {
+            const cartItems = document.querySelector('.cart-items');
+            const cartCount = document.querySelector('.cart-count');
+            cartItems.innerHTML = '';
+            
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="https://via.placeholder.com/60" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p>$${item.price.toFixed(2)}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+
+            document.getElementById('cart-total').textContent = cartTotal.toFixed(2);
+            cartCount.textContent = cart.length;
+        }
+
+        function removeFromCart(index) {
+            cartTotal -= cart[index].price;
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            const summary = cart.map(item => `${item.name}: $${item.price.toFixed(2)}`).join('\n');
+            alert(`Order Summary:\n${summary}\n\nTotal: $${cartTotal.toFixed(2)}\n\nThank you for your order!`);
+            
+            // Clear cart after successful checkout
+            cart = [];
+            cartTotal = 0;
+            updateCart();
+            toggleCart();
+        }
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Hide all sections
+                document.querySelectorAll('section:not(.hero)').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show target section
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+                
+                // Update active link
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Contact form submission
+        function submitContact() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            alert(`Thank you for your message, ${name}! We'll get back to you soon.`);
+            
+            // Clear form
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+        }
+
+        // Initialize the home page
+        window.onload = () => {
+            document.getElementById('products').style.display = 'block';
+        };
+    </script>
+</body>
+</html> 
